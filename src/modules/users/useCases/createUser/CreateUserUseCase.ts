@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { hash } from "bcrypt";
 import { inject, injectable } from "tsyringe";
 
@@ -18,7 +19,7 @@ class CreateUserUseCase {
     );
 
     if (userAlreadyExists) {
-      throw new AppError("User already exists");
+      throw new AppError("User with this user name already exists");
     }
 
     const passwordHash = await hash(password, 8);

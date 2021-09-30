@@ -1,9 +1,15 @@
 import mongoose from "mongoose";
 
 mongoose
-  .connect("mongodb://localhost:27017/challenge")
+  .connect(
+    `mongodb://localhost:27017/${
+      process.env.NODE_ENV === "test" ? "challenge_test" : "challenge"
+    }`
+  )
   .then(() => {
-    console.log("Connected database!✅");
+    if (process.env.NODE_ENV !== "test") {
+      console.log("Connected database!✅");
+    }
   })
   .catch((err) => {
     console.log(err);
