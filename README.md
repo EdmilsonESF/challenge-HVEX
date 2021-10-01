@@ -21,7 +21,7 @@ Tabela de conteúdos
    * [Funcionalidades](#⚙️-funcionalidades)
    * [Como executar o projeto](#🚀-como-executar-o-projeto)
      * [Pré-requisitos](#pré-requisitos)
-     * [Rodando o servidor](#rodando-o-servidor)
+     * [Rodando o servidor](#🎲-rodando-o-servidor)
      * [Rodando os testes](#🧪-rodando-os-testes)
    * [Tecnologias](#🛠-tecnologias)
 
