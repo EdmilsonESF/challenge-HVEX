@@ -39,6 +39,7 @@ Tabela de conteúdos
 | <span style="color:cyan">GET</span> | /read/{id} | No Body | {<br>  "name": "Name",<br>  "userName": "User Name",<br>  "lastAccess": "2021-10-01T13:55:37.355Z",<br>  "id": "61574584462d32c65f251cc6"<br>} |
 | <span style="color:orange">PUT</span> | /update/{id} | {<br>  "name": "Name Update",<br>  "userName": "User Name Update",<br>  "password": "123123"<br>} | {<br>  "name": "Name Update",<br>  "userName": "User Name Update",<br>  "lastAccess": "2021-10-01T17:34:14.173Z",<br>  "id": "61574584462d32c65f251cc6"<br>} |
 | <span style="color:red">DELETE</span> | /delete/{id} | No Body | No Content |
+| <span style="color:cyan">GET</span> | /api-docs | - | - |
 
 </br>
 
@@ -89,7 +90,7 @@ $ yarn test
 ```
 
 <p align="center">
-  <a href="http://localhost:3333/api-docs" target="_blank"><img src="https://img.shields.io/badge/-Swagger-232129?style=flat-square&logo=swagger" width="120" alt="swagger"></a>
+  <a href="http://localhost:3333/api-docs" target="_blank"><img src="https://img.shields.io/badge/-Swagger (documentation)-232129?style=flat-square&logo=swagger" width="300" alt="swagger"></a>
 </p>
 
 <p align="center">
