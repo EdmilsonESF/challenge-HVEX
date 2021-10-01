@@ -9,7 +9,7 @@ describe("Delete User Controller", () => {
     await mongoose.disconnect();
   });
 
-  it("should be able to delete an user", async () => {
+  it("should be able to delete a user", async () => {
     const { body } = await request(app).post("/create").send({
       name: "super test",
       userName: "test",

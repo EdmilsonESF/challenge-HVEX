@@ -18,10 +18,7 @@ class UsersRepository implements IUsersRepository {
   }
 
   async update({ id, name, userName, password }: IUser): Promise<IUser> {
-    await User.updateOne(
-      { _id: id },
-      { name, userName, password, lastAccess: new Date(Date.now()) }
-    );
+    await User.updateOne({ _id: id }, { name, userName, password });
 
     const user = await User.findOne({ userName });
 

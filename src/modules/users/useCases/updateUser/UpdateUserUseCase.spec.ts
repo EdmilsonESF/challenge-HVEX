@@ -14,7 +14,7 @@ describe("Create User", () => {
     createUserUseCase = new CreateUserUseCase(userRepositoryInMemory);
   });
 
-  it("should be able to show an user", async () => {
+  it("should be able to show a user", async () => {
     const userCreated = await createUserUseCase.execute({
       name: "User Test",
       userName: "User name test",

@@ -8,7 +8,7 @@ mongoose
   )
   .then(() => {
     if (process.env.NODE_ENV !== "test") {
-      console.log("Connected database!✅");
+      console.log("Connected to database!✅");
     }
   })
   .catch((err) => {

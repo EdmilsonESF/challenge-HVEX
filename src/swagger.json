@@ -1,41 +1,25 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "CHALLENGE HVEX",
+    "title": "Challenge-HVEX",
     "version": "1.0.0",
     "contact": {
-      "email": "ef.edmilsonfonseca@gamil.com"
+      "email": "ef.edmilsonfonseca@gmail.com"
     }
   },
   "paths": {
     "/create": {
       "post": {
         "tags": [
-          "Users"
+          "User"
         ],
-        "summary": "Create a user",
+        "summary": "Create user",
         "description": "Create a new user",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "userName": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "name": "Name test",
-                  "userName": "User name test",
-                  "password": "123123"
-                }
+                "$ref": "#/definitions/User"
               }
             }
           }
@@ -75,6 +59,9 @@
                     "message": {
                       "type": "string"
                     }
+                  },
+                  "example": {
+                    "message": "User with this user name already exists"
                   }
                 }
               }
@@ -87,39 +74,16 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "status": {
+                      "type": "string"
+                    },
                     "message": {
                       "type": "string"
                     }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Category"
-        ],
-        "summary": "List all categories",
-        "description": "List all categories",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      }
-                    }
+                  },
+                  "example": {
+                    "status": "error",
+                    "message": "Internal server error Users validation failed: name: Path `name` is required., userName: Path `userName` is required."
                   }
                 }
               }
@@ -128,39 +92,240 @@
         }
       }
     },
-    "/categories/import": {
-      "post": {
+    "/read/{id}": {
+      "get": {
         "tags": [
-          "Category"
+          "User"
         ],
-        "summary": "Upload new category",
-        "description": "Upload new category",
-        "security": [
+        "summary": "Show user",
+        "description": "Show a user by id",
+        "parameters": [
           {
-            "bearerAuth": []
+            "in": "path",
+            "name": "id",
+            "require": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The user ID (id must be an objectId)"
           }
         ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "type": "string",
-                    "format": "binary"
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "userName": {
+                      "type": "string"
+                    },
+                    "lastAccess": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "name": "Name test",
+                    "userName": "User name test",
+                    "password": "123123",
+                    "id": "6154c80b4170e60c6bc2d941"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "User not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "status": "error",
+                    "message": "Internal server error Cast to ObjectId failed for value \"6\" (type string) at path \"_id\" for model \"Users\""
                   }
                 }
               }
             }
           }
+        }
+      }
+    },
+    "/update/{id}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update user",
+        "description": "Update user data",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "require": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The user ID (id must be an objectId)"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
         },
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "User not found"
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Specification already exists"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "status": "error",
+                    "message": "Internal server error Cast to ObjectId failed for value \"6\" (type string) at path \"_id\" for model \"Users\""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete/{id}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete user",
+        "description": "Delete a user",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "require": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The user ID (id must be an objectId)"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content"
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "User not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "status": "error",
+                    "message": "Internal server error Cast to ObjectId failed for value \"6\" (type string) at path \"_id\" for model \"Users\""
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -170,9 +335,6 @@
     "User": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string"
-        },
         "name": {
           "type": "string"
         },
@@ -181,10 +343,12 @@
         },
         "password": {
           "type": "string"
-        },
-        "lastAccess": {
-          "type": "date"
         }
+      },
+      "example": {
+        "name": "Name test",
+        "userName": "User name test",
+        "password": "123123"
       }
     }
   }

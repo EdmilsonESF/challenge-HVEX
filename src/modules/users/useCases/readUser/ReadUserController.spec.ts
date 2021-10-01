@@ -9,7 +9,7 @@ describe("Read User Controller", () => {
     await mongoose.disconnect();
   });
 
-  it("should be able to show an user", async () => {
+  it("should be able to show a user", async () => {
     const { body } = await request(app).post("/create").send({
       name: "super test",
       userName: "test",
