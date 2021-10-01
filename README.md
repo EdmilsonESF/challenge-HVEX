@@ -82,7 +82,7 @@ $ yarn dev
 #### 🧪 Rodando os testes
 
 ```bash
-# Execute a aplicação em modo de desenvolvimento
+# Execute os testes da aplicação
 $ npm run test
 # Ou
 $ yarn test
