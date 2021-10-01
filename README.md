@@ -28,7 +28,7 @@ Tabela de conteúdos
 
 
 ## ⚙️ Funcionalidades
-- [x] Criacão de um novo usuário.
+- [x] Criar um novo usuário.
 - [x] Exibir os dados de um usuário.
 - [x] Atualizar os dados de um usuário.
 - [x] Remover um usuário.
@@ -36,11 +36,12 @@ Tabela de conteúdos
 | Métodos | Rotas | Request Body | Response |  |  |
 |:---|---|---|---|---|---:|
 | <span style="color:green">POST</span> | /create | {<br>  "name": "Name",<br>  "userName": "User Name",<br>  "password": "123123"<br>} | {<br><br>  "name": "Name",<br>  "userName": "User Name",<br>  "lastAccess": "2021-10-01T13:55:37.355Z",<br>  "id": "61574584462d32c65f251cc6"<br>} |  |  |
-| <span style="color:cyan">GET</span> | /read/:id | No Body | {<br>  "name": "Name",<br>  "userName": "User Name",<br>  "lastAccess": "2021-10-01T13:55:37.355Z",<br>  "id": "61574584462d32c65f251cc6"<br>} |  |  |
-| <span style="color:orange">PUT</span> | /update/:id | {<br>  "name": "Name Update",<br>  "userName": "User Name Update",<br>  "password": "123123"<br>} | {<br>  "name": "Name Update",<br>  "userName": "User Name Update",<br>  "lastAccess": "2021-10-01T17:34:14.173Z",<br>  "id": "61574584462d32c65f251cc6"<br>} |  |  |
-| <span style="color:red">DELETE</span> | /delete/:id | No Body | No Content |  |  |
+| <span style="color:cyan">GET</span> | /read/{id} | No Body | {<br>  "name": "Name",<br>  "userName": "User Name",<br>  "lastAccess": "2021-10-01T13:55:37.355Z",<br>  "id": "61574584462d32c65f251cc6"<br>} |  |  |
+| <span style="color:orange">PUT</span> | /update/{id} | {<br>  "name": "Name Update",<br>  "userName": "User Name Update",<br>  "password": "123123"<br>} | {<br>  "name": "Name Update",<br>  "userName": "User Name Update",<br>  "lastAccess": "2021-10-01T17:34:14.173Z",<br>  "id": "61574584462d32c65f251cc6"<br>} |  |  |
+| <span style="color:red">DELETE</span> | /delete/{id} | No Body | No Content |  |  |
 
 </br>
+
 ---
 
 ## 🚀 Como executar o projeto
@@ -80,7 +81,7 @@ $ yarn dev
 #### 🧪 Rodando os testes
 
 ```bash
-# Execute a aplicação em modo de desenvolvimento
+# Execute os testes da aplicação
 $ npm run test
 # Ou
 $ yarn test
